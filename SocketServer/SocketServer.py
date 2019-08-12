@@ -26,4 +26,4 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
 
             res = np.array([1, 2, 3])
             conn.sendall(len(res).to_bytes(4, sys.byteorder))
-            conn.sendall(res.tobytes())
+            conn.sendall(res)

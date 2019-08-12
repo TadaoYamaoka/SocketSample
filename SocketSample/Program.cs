@@ -51,6 +51,14 @@ namespace SocketSample
                 {
                     res.Add(BitConverter.ToInt32(buffer, 4 * i));
                 }
+                Console.WriteLine(size);
+                Console.Write("[");
+                foreach (var v in res)
+                {
+                    Console.Write(v);
+                    Console.Write(",");
+                }
+                Console.WriteLine("]");
             }
 
             ns.Close();
