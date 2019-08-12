@@ -1,8 +1,6 @@
 #include "Decoder.h"
 
-void __decode(const std::string& str, char* a, char* b) {
-	const char* data = str.data();
-
+void __decode(const char* data, char* a, char* b) {
 	const int& in_a = (const int&)(*data);
 	const int& size = (const int&)(*(data + 4));
 	const int* in_b = (const int*)(data + 8);

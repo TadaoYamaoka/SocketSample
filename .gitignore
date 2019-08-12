@@ -263,3 +263,4 @@ __pycache__/
 build/
 *.egg-info/
 *.pyd
+/SocketServer/Decoder.cpp

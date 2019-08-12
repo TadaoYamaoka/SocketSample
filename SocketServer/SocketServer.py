@@ -10,16 +10,12 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     conn, addr = s.accept()
     with conn:
         while True:
-            size = int.from_bytes(conn.recv(4), sys.byteorder)
+            size = int.from_bytes(conn.recv(4, socket.MSG_WAITALL), sys.byteorder)
             if not size:
                 break
 
-            data = b''
-            while len(data) < size:
-                buf = conn.recv(size - len(data))
-                if not buf:
-                    raise RuntimeError("socket connection broken")
-                data += buf
+            data = np.empty(size, dtype=np.uint8)
+            conn.recv_into(data, size, socket.MSG_WAITALL)
 
             a = np.empty(1, dtype=np.int32)
             b = np.empty((size - 8) // 4, dtype=np.int32)
